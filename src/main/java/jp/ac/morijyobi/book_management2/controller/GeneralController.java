@@ -13,4 +13,9 @@ public class GeneralController {
     public String index(Model model) {
         return "index";
     }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "login";
+    }
 }
