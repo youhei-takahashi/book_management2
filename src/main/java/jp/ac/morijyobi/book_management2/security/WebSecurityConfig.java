@@ -17,9 +17,10 @@ public class WebSecurityConfig {
         http
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/").permitAll()   // /という URLはログイン無しでアクセスOK
+                .requestMatchers("/common/**").permitAll() // /common配下のURLはログイン無しでアクセスOK
                 .anyRequest().authenticated()       // それ以外のURLはログインが必要
             ).formLogin(login -> login
-                .loginProcessingUrl("/login")       // ユーザID・PWの送信先URL(POST)
+                .loginProcessingUrl("/longin")       // ユーザID・PWの送信先URL(POST)
                 .loginPage("/login")                // ログイン画面のURL(GET)
                 .defaultSuccessUrl("/")             // ログイン成功時のリダイレクト先URL
                 .failureUrl("/login?error")     // ログイン失敗時のリダイレクト先URL
