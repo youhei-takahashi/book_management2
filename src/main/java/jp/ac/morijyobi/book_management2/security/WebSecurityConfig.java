@@ -21,7 +21,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/tag/**").hasRole("ADMIN") // /tag配下のURLはADMIN権限が必要
                 .anyRequest().authenticated()       // それ以外のURLはログインが必要
             ).formLogin(login -> login
-                .loginProcessingUrl("/longin")       // ユーザID・PWの送信先URL(POST)
+                .loginProcessingUrl("/login")       // ユーザID・PWの送信先URL(POST)
                 .loginPage("/login")                // ログイン画面のURL(GET)
                 .defaultSuccessUrl("/")             // ログイン成功時のリダイレクト先URL
                 .failureUrl("/login?error")     // ログイン失敗時のリダイレクト先URL
