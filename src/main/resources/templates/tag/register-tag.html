@@ -7,7 +7,7 @@
 <main class="container mt-3">
     <div class="alert alert-info" th:if="${message}" th:text="${message}">message info</div>
     <h3>タグ登録</h3>
-    <form th:action="@{/tag/register-exe}" th:object="${tagForm}" method="post">
+    <form th:action="@{/tag/register}" th:object="${tagForm}" method="post">
         <div class="mb-3">
             <label for="tag-name" class="form-label">タグ名</label>
             <input type="text" class="form-control" id="tag-name" name="tagName" th:field="*{tagName}" required minlength="1" maxlength="32">
