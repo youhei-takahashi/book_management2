@@ -1,5 +1,6 @@
 package jp.ac.morijyobi.book_management2.controller;
 
+import jp.ac.morijyobi.book_management2.bean.entity.Tag;
 import jp.ac.morijyobi.book_management2.bean.form.TagForm;
 import jp.ac.morijyobi.book_management2.service.TagService;
 import jp.ac.morijyobi.book_management2.service.UserService;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/tag")
@@ -25,6 +28,9 @@ public class TagController {
     public String register(Model model) {
         TagForm tagForm = new TagForm();
         model.addAttribute("tagForm", tagForm);
+
+        List<Tag> tagList = tagService.getAllTags();
+        model.addAttribute("tagList", tagList);
 
         return "tag/register-tag";
     }

@@ -16,6 +16,27 @@
 
         <button type="submit" class="btn btn-primary">登録</button>
     </form>
+    <h3 style="margin-top: 0.5rem">タグ一覧</h3>
+    <div class="mx-auto">
+        <table class="table table-striped">
+            <colgroup>
+                <col style="width: 20%">
+                <col style="width: 80%">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>タグ名</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tag : ${tagList}">
+                <td><span th:text="${tag.id}">0</span></td>
+                <td><span th:text="${tag.tagName}">tag name</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </main>
 
 <th:block th:replace="~{layout :: footer}"></th:block>

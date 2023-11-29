@@ -6,6 +6,8 @@ import jp.ac.morijyobi.book_management2.mapper.TagsMapper;
 import jp.ac.morijyobi.book_management2.service.TagService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TagServiceImpl implements TagService {
 
@@ -23,5 +25,10 @@ public class TagServiceImpl implements TagService {
         tagsMapper.insertTag(tag);
 
         return null;
+    }
+
+    @Override
+    public List<Tag> getAllTags() {
+        return tagsMapper.selectAllTags();
     }
 }
