@@ -18,6 +18,8 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/").permitAll()   // /という URLはログイン無しでアクセスOK
                 .requestMatchers("/common/**").permitAll() // /common配下のURLはログイン無しでアクセスOK
+                .requestMatchers("/book/list").permitAll()  // /book/listという URLはログイン無しでアクセスOK
+                .requestMatchers("/book/**").hasRole("ADMIN") // /book配下のURLはADMIN権限が必要
                 .requestMatchers("/tag/**").hasRole("ADMIN") // /tag配下のURLはADMIN権限が必要
                 .anyRequest().authenticated()       // それ以外のURLはログインが必要
             ).formLogin(login -> login

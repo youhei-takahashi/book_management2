@@ -1,5 +1,6 @@
 package jp.ac.morijyobi.book_management2.controller;
 
+import jp.ac.morijyobi.book_management2.bean.entity.Book;
 import jp.ac.morijyobi.book_management2.bean.entity.Tag;
 import jp.ac.morijyobi.book_management2.bean.form.BookForm;
 import jp.ac.morijyobi.book_management2.service.BookService;
@@ -11,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -56,4 +58,17 @@ public class BookController {
 
         return "redirect:/book/register";
     }
+
+    @GetMapping("/list")
+    public String bookList(@RequestParam(defaultValue = "") String keyword,
+                           Model model) {
+        List<Book> bookList = bookService.getBooksByKeyword(keyword);
+        model.addAttribute("bookList", bookList);
+
+        return "book/book-list";
+    }
+
+
+
+
 }
