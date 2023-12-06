@@ -5,6 +5,8 @@ import jp.ac.morijyobi.book_management2.bean.entity.Tag;
 import jp.ac.morijyobi.book_management2.bean.form.BookForm;
 import jp.ac.morijyobi.book_management2.service.BookService;
 import jp.ac.morijyobi.book_management2.service.TagService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -68,7 +70,28 @@ public class BookController {
         return "book/book-list";
     }
 
+    @GetMapping("/loan")
+    public String bookLoan(@RequestParam int bookId,
+                           Model model) {
+        Book book = bookService.getBookById(bookId);
+        model.addAttribute("book", book);
 
+        return "book/book-loan";
+    }
+
+    @PostMapping("/loan")
+    public String bookLoanExe(@RequestParam int id,
+                              @AuthenticationPrincipal UserDetails userDetails,
+                              RedirectAttributes redirectAttributes,
+                              Model model) {
+
+        if (bookService.registerBookLoan(id, userDetails.getUsername())) {
+            redirectAttributes.addFlashAttribute("message", "貸出が完了しました。");
+        } else {
+            redirectAttributes.addFlashAttribute("warning", "貸出に失敗しました。");
+        }
+        return "redirect:/book/list";
+    }
 
 
 }
