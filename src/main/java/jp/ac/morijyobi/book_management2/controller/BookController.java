@@ -1,5 +1,6 @@
 package jp.ac.morijyobi.book_management2.controller;
 
+import jp.ac.morijyobi.book_management2.bean.dto.LoanedBookDTO;
 import jp.ac.morijyobi.book_management2.bean.entity.Book;
 import jp.ac.morijyobi.book_management2.bean.entity.Tag;
 import jp.ac.morijyobi.book_management2.bean.form.BookForm;
@@ -93,5 +94,13 @@ public class BookController {
         return "redirect:/book/list";
     }
 
+    @GetMapping("/loans")
+    public String loanedBooks(@AuthenticationPrincipal UserDetails userDetails,
+                              Model model) {
+        List<LoanedBookDTO> loanedBookList = bookService.getLoanedBooksByUser(userDetails);
+        model.addAttribute("loanedBookList", loanedBookList);
+
+        return "book/loaned-books";
+    }
 
 }
