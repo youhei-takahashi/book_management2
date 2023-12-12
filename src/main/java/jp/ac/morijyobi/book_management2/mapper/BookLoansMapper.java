@@ -19,7 +19,8 @@ public interface BookLoansMapper {
     @Select("SELECT bl.id AS loan_id, b.id AS book_id, b.title, b.author, b.publisher, " +
             "b.publication_date, bl.checkout_date, bl.return_date " +
             "FROM book_loans AS bl INNER JOIN books AS b ON bl.book_id = b.id " +
-            "WHERE bl.user_id = #{userId} ")
+            "WHERE bl.user_id = #{userId} " +
+            "ORDER BY bl.checkout_date DESC")
     List<LoanedBookDTO> selectLoanedBooksByUserId(int userId);
 
     @Update("UPDATE book_loans SET return_date = CURRENT_TIMESTAMP " +
