@@ -17,5 +17,7 @@ public interface BookService {
 
     boolean registerBookLoan(int bookId, String username);
 
+    boolean returnBookLoans(int bookId, UserDetails userDetails);
+
     List<LoanedBookDTO> getLoanedBooksByUser(UserDetails userDetails);
 }

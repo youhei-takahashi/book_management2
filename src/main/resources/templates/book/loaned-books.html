@@ -12,12 +12,13 @@
         <table class="table table-striped">
             <colgroup>
                 <col style="width: 5%">
-                <col style="width: 30%">
-                <col style="width: 15%">
+                <col style="width: 25%">
                 <col style="width: 10%">
                 <col style="width: 10%">
+                <col style="width: 10%">
                 <col style="width: 15%">
                 <col style="width: 15%">
+                <col style="width: 10%">
             </colgroup>
             <thead>
             <tr>
@@ -28,6 +29,7 @@
                 <th>出版日</th>
                 <th>貸出日時</th>
                 <th>返却日時</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -39,6 +41,10 @@
                 <td><span th:text="${#temporals.format(book.publicationDate, 'yyyy/MM/dd')}">book publicationDate</span></td>
                 <td><span th:text="${#temporals.format(book.checkoutDate, 'yyyy/MM/dd hh:mm')}">book checkoutDate</span></td>
                 <td><span th:text="${#temporals.format(book.returnDate, 'yyyy/MM/dd hh:mm')}">book returnDate</span></td>
+                <td>
+                    <a th:href="@{/book/return(bookId=${book.bookId})}" sec:authorize="hasRole('GENERAL')"
+                        class="btn btn-primary float-end">返却</a>
+                </td>
             </tr>
             </tbody>
         </table>
