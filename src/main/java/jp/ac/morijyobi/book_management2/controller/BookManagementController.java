@@ -52,6 +52,6 @@ public class BookManagementController {
         bookService.registerBook(bookForm);
         redirectAttributes.addFlashAttribute("message", "登録が完了しました。");
 
-        return "redirect:/book/register";
+        return "redirect:/management/register";
     }
 }
