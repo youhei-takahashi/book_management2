@@ -6,7 +6,7 @@
 <main class="container mt-3">
     <div class="alert alert-info" th:if="${message}" th:text="${message}"></div>
     <h3>図書登録</h3>
-    <form th:action="@{/book/register}" method="post" th:object="${bookForm}">
+    <form th:action="@{/management/register}" method="post" th:object="${bookForm}">
         <div class="mb-3">
             <label for="title" class="form-label">タイトル</label>
             <input type="text" class="form-control" id="title" name="title" th:field="*{title}" required maxlength="255">

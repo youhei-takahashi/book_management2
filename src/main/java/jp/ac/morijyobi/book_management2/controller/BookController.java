@@ -24,42 +24,10 @@ import java.util.List;
 @RequestMapping("/book")
 public class BookController {
 
-    private final TagService tagService;
     private final BookService bookService;
 
-    public BookController(TagService tagService, BookService bookService) {
-        this.tagService = tagService;
+    public BookController(BookService bookService) {
         this.bookService = bookService;
-    }
-
-    @GetMapping("/register")
-    public String registerBook(Model model) {
-
-        BookForm bookForm = new BookForm();
-        model.addAttribute("bookForm", bookForm);
-
-        List<Tag> tagList = tagService.getAllTags();
-        model.addAttribute("tagList", tagList);
-
-        return "book/register-book";
-    }
-
-    @PostMapping("/register")
-    public String registerExe(@Validated BookForm bookForm,
-                              BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes,
-                              Model model) {
-        if (bindingResult.hasErrors()) {
-            List<Tag> tagList = tagService.getAllTags();
-            model.addAttribute("tagList", tagList);
-
-            return "book/register-book";
-        }
-
-        bookService.registerBook(bookForm);
-        redirectAttributes.addFlashAttribute("message", "登録が完了しました。");
-
-        return "redirect:/book/register";
     }
 
     @GetMapping("/list")
