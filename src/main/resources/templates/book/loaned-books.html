@@ -43,7 +43,7 @@
                 <td><span th:text="${#temporals.format(book.returnDate, 'yyyy/MM/dd hh:mm')}">book returnDate</span></td>
                 <td>
                     <a th:href="@{/book/return(bookId=${book.bookId})}" sec:authorize="hasRole('GENERAL')"
-                        class="btn btn-primary float-end">返却</a>
+                       th:if="${book.returnDate == null}" class="btn btn-primary float-end">返却</a>
                 </td>
             </tr>
             </tbody>
